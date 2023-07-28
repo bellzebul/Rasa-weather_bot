@@ -1,0 +1,32 @@
+recipe: default.v1
+
+language: uk
+pipeline:  
+  - name: SpacyNLP
+    model: uk_core_news_sm
+  - name: SpacyTokenizer
+  - name: "SpacyEntityExtractor"
+  - name: SpacyFeaturizer
+  - name: RegexFeaturizer
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 70
+  - name: EntitySynonymMapper
+  - name: ResponseSelector
+    epochs: 100
+
+
+assistant_id: 20230725-233007-devout-script
+policies:
+ # No configuration for policies was provided. The following default policies were used to train your model.
+ # If you'd like to customize them, uncomment and adjust the policies.
+ # See https://rasa.com/docs/rasa/policies for more information.
+   - name: MemoizationPolicy
+   - name: RulePolicy
+
+

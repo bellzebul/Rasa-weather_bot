@@ -1,0 +1,47 @@
+version: "3.1"
+
+
+rules:
+
+- rule: Привітання
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Подяка на кожну подяку
+  steps:
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_goodbye
+  - action: action_goodbye
+
+- rule: Відповідати на некоректні питання
+  steps:
+  - intent: wrong_q
+  - action: utter_wrong_q
+
+- rule: Запит місця, якщо воно не вказане
+  steps:
+  - intent: ask_weather
+    entities:
+    - date: "сьогодні"
+  - action: utter_ask_loc
+
+- rule: Введення місця після його запиту
+  steps:
+  - action: utter_ask_loc
+  - intent: enter_location
+    entities:
+    - location: "Київ"
+  - action: utter_ask_weather
+  - action: action_get_weather
+
+
+- rule: Запит погоди, якщо місце вказане
+  steps:
+  - intent: ask_weather
+    entities:
+    - location: "Київ"
+    - date: "сьогодні"
+  - action: utter_ask_weather
+  - action: action_get_weather

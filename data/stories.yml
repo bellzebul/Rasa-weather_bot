@@ -1,0 +1,111 @@
+version: "3.1"
+
+stories:
+- story: Погода сьогодні
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+    entities:
+    - location: "Київ"
+    - date: "сьогодні"
+  - action: utter_ask_weather
+  - action: action_get_weather
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_goodbye
+  - action: action_goodbye
+
+- story: Погода на майбутнє
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+    entities:
+    - location: "Токіо"
+    - date: "завтра"
+  - action: utter_ask_weather
+  - action: action_get_weather
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_goodbye
+  - action: action_goodbye
+
+- story: Погода зараз
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+    entities:
+    - location: "Токіо"
+  - action: utter_ask_weather
+  - action: action_get_weather
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_goodbye
+  - action: action_goodbye
+
+- story: Погода без привітання
+  steps:
+  - intent: ask_weather
+    entities:
+    - location: "Одеса"
+    - date: "післязавтра"
+  - action: utter_ask_weather
+  - action: action_get_weather
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_goodbye
+  - action: action_goodbye
+
+- story: Запит погоди без місця
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+    entities:
+    - date: "сьогодні"
+  - action: utter_ask_loc
+  - intent: enter_location
+    entities:
+    - location: "Київ"
+  - action: utter_ask_weather
+  - action: action_get_weather
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_goodbye
+  - action: action_goodbye
+
+- story: Запит погоди без дати та місця
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_weather
+  - action: utter_ask_loc
+  - intent: enter_location
+    entities:
+    - location: "Київ"
+  - action: utter_ask_weather
+  - action: action_get_weather
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_goodbye
+  - action: action_goodbye
+
+- story: Привітання без подальшого запиту
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- story: Подяка без попереднього запиту
+  steps:
+  - intent: thanks
+  - action: utter_thanks
+  - action: utter_goodbye
+  - action: action_goodbye
+
+- story: Некоректне питання
+  steps:
+  - intent: wrong_q
+  - action: utter_wrong_q
+
