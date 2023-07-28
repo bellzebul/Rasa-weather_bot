@@ -4,7 +4,7 @@
 ### Setup
 
 1. Clone repo.
-2. Enter your api in actions.py
+2. Enter your api in actions.py. Bot uses one-hot api from openweathermap.
 3. Open terminal from root dir of project.
 4. Build docker images:\
    `docker build -t rasa_server .`\
