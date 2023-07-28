@@ -4,15 +4,16 @@
 ### Setup
 
 1. Clone repo.
-2. Open terminal from root dir of project.
-3. Build docker images:\
+2. Enter your api in actions.py
+3. Open terminal from root dir of project.
+4. Build docker images:\
    `docker build -t rasa_server .`\
    `docker build -t action_server -f actions/Dockerfile .`
-4. Create network:\
+5. Create network:\
    `docker network create rasa_network`
-5. From first terminal run:\
+6. From first terminal run:\
     `docker run -v PATH_TO_ACTIONS_DIR:/app --network rasa_network --name action_server -p 5055:5055 action_server`
-6. And from second:\
+7. And from second:\
     `docker run -it -v PATH_TO_ROOT_DIR:/app -p 5005:5005 --net rasa_network rasa_server /bin/bash`\
    where write \`rasa shell`
 
